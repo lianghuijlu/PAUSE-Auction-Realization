@@ -1,16 +1,23 @@
-% function [outputArg1,outputArg2] = stageOneComBid(inputArg1,inputArg2)
+function stageOneComBid(itemNum)
 % %STAGEONECOMBID Summary of this function goes here
 % %   Detailed explanation goes here
 % outputArg1 = inputArg1;
 % outputArg2 = inputArg2;
 % end
 
-clear 
+% clear 
+% 
+% load('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/allBids','bid')
 
-load('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/allBids','bid')
+% ALLBID = bid;
+% I = 4;
+% currentValue = 0;
+% j = 1;
+% APPCOMBIDLOG(1).value = 0;
 
-ALLBID = bid;
-I = 4;
+
+global ALLBID APPCOMBIDLOG
+I = itemNum;
 currentValue = 0;
 j = 1;
 APPCOMBIDLOG(1).value = 0;
@@ -26,12 +33,11 @@ for i = 1:I
         j = j+1;
     end
     j = 1;
+    APPCOMBIDLOG(1).value = APPCOMBIDLOG(1).value + currentValue;
     currentValue = 0;
 end
 
-for i = 1:I
-    APPCOMBIDLOG(1).value = APPCOMBIDLOG(1).value + APPCOMBIDLOG(1).("block"+i).value;
 end
 
-save('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/oneStageComBid','APPCOMBIDLOG')
+% save('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/oneStageComBid','APPCOMBIDLOG')
 
