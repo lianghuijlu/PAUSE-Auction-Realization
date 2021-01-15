@@ -1,15 +1,20 @@
-% function [outputArg1,outputArg2] = bidGen(inputArg1,inputArg2)
+function [bid] = bidGen(agentNum,itemNum)
 % %BIDGEN Summary of this function goes here
 % %   Detailed explanation goes here
 % outputArg1 = inputArg1;
 % outputArg2 = inputArg2;
-% end
 
 
-clear
 
-N = 4; % Bidder Number
-I = 4; % Item Number
+% clear
+% 
+% N = 4; % Bidder Number
+% I = 4; % Item Number
+% ItemsPre = [];
+% i = 1;
+
+N = agentNum;
+I = itemNum;
 ItemsPre = [];
 i = 1;
 
@@ -34,5 +39,7 @@ for StageIndex = 1:I
     end
 end
 
-save('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/allBids','bid')
+end
+
+% save('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/allBids','bid')
 
