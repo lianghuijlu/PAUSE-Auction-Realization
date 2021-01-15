@@ -1,4 +1,4 @@
-% function [outputArg1,outputArg2] = comBidGen(inputArg1,inputArg2)
+% function [comBidBack] = comBidGen(initialBlockBid,itemNum)
 % %COMBIDGEN Summary of this function goes here
 % %   Detailed explanation goes here
 % outputArg1 = inputArg1;
@@ -15,6 +15,7 @@ initialBlockBid = ALLBID(8);
 blockBid = initialBlockBid;
 comBid.("Block"+1) = blockBid;
 currentComBidValue = 0;
+preComBidValue = 0;
 j = 2;
 ex_i = 0;
 ex_k = 0;
@@ -25,16 +26,19 @@ for i = 1:APPlineNum
     lengthCurrentLine = sum(nonEmptyNum(:,:,i)) - 1;
     for k = 1:lengthCurrentLine
         if i ~= ex_i && k ~= ex_k
-            if sum(ismember(blockBid.item,APPCOMBIDLOG(i).("block"+k).item == 0
+            if sum(ismember(blockBid.item,APPCOMBIDLOG(i).("block"+k).item)) == 0
                 comBid.("block"+j) = APPCOMBIDLOG(i).("block"+k);
                 blockBid.item = [blockBid.item APPCOMBIDLOG(i).("block"+k).item];
                 comBid.value = currentComBidValue + APPCOMBIDLOG(i).("block"+k).value;
+                currentComBidValue = comBid.value;
                 j = j + 1;
-                if length (bolckBid.item) == ItemNum
-                    if comBid.value > currentComBidValue
+                if length(blockBid.item) == itemNum
+                    if comBid.value > preComBidValue
                         comBidBack = comBid;
-                        currentComBidValue = comBid.value;
+                        preComBidValue = currentComBidValue;
+                        currentComBidValue = 0;
                         blockBid = initialBlockBid;
+                        j = 2;
                     end
                     ex_i = i;
                     ex_k = k;
@@ -42,7 +46,7 @@ for i = 1:APPlineNum
                     k = 1;
                 end
             end
-            
+ 
         end
         
     end
