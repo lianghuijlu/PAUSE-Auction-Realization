@@ -31,13 +31,13 @@ for t = 2:I
         while(ALLBID(j).stage == t)
             currentBlockBid = ALLBID(j);
             comBid = comBidGen(currentBlockBid);
-            j = j+1;
             if (APPCOMBIDLOG.value(i) - comBid.value) < ALLBID(j).value
+               comBid.("block"+1).value = APPCOMBIDLOG.value(i) - comBid.value + e;
                comBid.value = APPCOMBIDLOG.value(i) + e;
-               APPCOMBIDLOG.("block"+1) = ALLBID(j).value + e;
                APPCOMBIDLOG(i+1) = comBid;
                i = i+1;
-            end   
+            end 
+            j = j+1;
         end
         j = j+1;
     end
