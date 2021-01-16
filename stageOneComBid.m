@@ -1,4 +1,4 @@
-function stageOneComBid(itemNum)
+function stageOneComBid()
 % %STAGEONECOMBID Summary of this function goes here
 % %   Detailed explanation goes here
 % outputArg1 = inputArg1;
@@ -16,9 +16,9 @@ function stageOneComBid(itemNum)
 % APPCOMBIDLOG(1).value = 0;
 
 
-global ALLBID APPCOMBIDLOG
+global ALLBID APPCOMBIDLOG ITEMNUM
 APPCOMBIDLOG(1).value = 0;
-I = itemNum;
+I = ITEMNUM;
 currentValue = 0;
 j = 1;
 k = 1;
@@ -32,16 +32,18 @@ for i = 1:I
                 currentValue = ALLBID(j).value;
                 APPCOMBIDLOG(1).("block"+i) = ALLBID(j);
             end
-        end
+            mentionedItem = [mentionedItem i];
+        end       
         j = j+1;
-        mentionedItem = [mentionedItem i];
     end
+    
     j = 1;
     APPCOMBIDLOG(1).value = APPCOMBIDLOG(1).value + currentValue;
     currentValue = 0;
 end
     
-if (numel(fieldnames(APPCOMBIDLOG))-1) ~= itemNum
+if (numel(fieldnames(APPCOMBIDLOG))-1) ~= ITEMNUM
+    mentionedItem = unique(mentionedItem);
     suppItem = setxor(mentionedItem,allItem);
     for m = 1:numel(suppItem)
         APPCOMBIDLOG(1).("block"+suppItem(m))=[];
