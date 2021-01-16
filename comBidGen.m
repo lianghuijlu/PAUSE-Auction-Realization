@@ -1,19 +1,22 @@
-% function [comBidBack] = comBidGen(initialBlockBid,itemNum)
+function [comBidBack] = comBidGen(initialBlockBid)
 % %COMBIDGEN Summary of this function goes here
 % %   Detailed explanation goes here
 % outputArg1 = inputArg1;
 % outputArg2 = inputArg2;
 % end
 
-clear
-load('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/allBids','bid')
-ALLBID = bid;
-load('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/oneStageComBid','APPCOMBIDLOG')
+% clear
+% load('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/allBids','bid')
+% ALLBID = bid;
+% load('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/oneStageComBid','APPCOMBIDLOG')
 
-itemNum = 4;
-initialBlockBid = ALLBID(8);
+global ALLBID APPCOMBIDLOG ITEMNUM
+
+% itemNum = 4;
+% initialBlockBid = ALLBID(8);
+itemNum = ITEMNUM;
 blockBid = initialBlockBid;
-comBid.("Block"+1) = blockBid;
+comBid.("block"+1) = blockBid;
 currentComBidValue = 0;
 preComBidValue = 0;
 j = 2;
@@ -53,5 +56,5 @@ for i = 1:APPlineNum
 end
     
 
-
+end
 
