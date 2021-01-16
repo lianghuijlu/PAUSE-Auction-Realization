@@ -23,18 +23,23 @@ APPCOMBIDLOG = struct;
 ALLBID = bidGen(N,I);
 bidNum = length(ALLBID);
 disp("ALLBID has done!")
-stageOneComBid(I)
+stageOneComBid()
 disp("stageOne has done!")
 
-for t = 2:I
+for t = 2:I-1
     for j = 1:bidNum
         while(ALLBID(j).stage == t)
             currentBlockBid = ALLBID(j);
             comBid = comBidGen(currentBlockBid);
-            if (APPCOMBIDLOG.value(i) - comBid.value) < ALLBID(j).value
-               comBid.("block"+1).value = APPCOMBIDLOG.value(i) - comBid.value + e;
-               comBid.value = APPCOMBIDLOG.value(i) + e;
-               APPCOMBIDLOG(i+1) = comBid;
+            fprintf('This is agent %d, stage %d composit bid based on bid %d.\n',...
+                ALLBID(j).agent, ALLBID(j).stage, j)
+            if (APPCOMBIDLOG(i).value - comBid.value) < ALLBID(j).value
+               comBid.("block"+1).value = APPCOMBIDLOG(i).value - comBid.value + e;
+               comBid.value = APPCOMBIDLOG(i).value + e;
+               APPCOMBIDLOG(i+1).value = comBid.value;
+               for k = 1:(numel(fieldnames(comBid))-1)
+                   APPCOMBIDLOG(i+1).("block"+k) = comBid.("block"+k);
+               end
                i = i+1;
             end 
             j = j+1;
@@ -42,4 +47,6 @@ for t = 2:I
         j = j+1;
     end
 end
+
+disp("PAUSE is finished!")
     

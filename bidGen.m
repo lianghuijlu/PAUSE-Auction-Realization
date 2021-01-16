@@ -26,7 +26,7 @@ for StageIndex = 1:I
         for Times = 1:SelectTimes
             Items = randperm(I,SelectNum);
             if ~ismember(sum(Items),ItemsPre)
-                Value = randi([5*(StageIndex-1),5*StageIndex],1);
+                Value = randi([5*StageIndex*(StageIndex-1),5*StageIndex*StageIndex],1);
                 bid(i).agent = AgentIndex;
                 bid(i).stage = StageIndex;
                 bid(i).value = Value;

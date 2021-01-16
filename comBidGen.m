@@ -17,6 +17,7 @@ global ALLBID APPCOMBIDLOG ITEMNUM
 itemNum = ITEMNUM;
 blockBid = initialBlockBid;
 comBid.("block"+1) = blockBid;
+comBidBack = [];
 currentComBidValue = 0;
 preComBidValue = 0;
 j = 2;
