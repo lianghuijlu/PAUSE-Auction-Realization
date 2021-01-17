@@ -24,10 +24,9 @@ j = 1;
 k = 0;
 m = 1;
 allItem = [1:I];
-mentionedItem = [];
+% mentionedItem = [];
 
 for i = 1:I
-
     while(ALLBID(j).stage == 1)
         if ALLBID(j).item == i
             if m == 1

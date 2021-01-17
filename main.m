@@ -49,7 +49,9 @@ while (1)
             ALLBID(j).agent, ALLBID(j).stage, j)
         if isempty(comBid)
             unavailableComBidNum = unavailableComBidNum + 1;
+            fprintf('The unsubmit bid is bid %d.\n',j)
             fprintf('The unavailable composite bid number is %d.\n', unavailableComBidNum)
+            
             %                 else
             %                     if (APPCOMBIDLOG(i).value - comBid.value) < ALLBID(j).value
             %
