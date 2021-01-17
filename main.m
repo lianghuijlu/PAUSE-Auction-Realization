@@ -20,13 +20,13 @@ j = 1;
 t = 2;
 e = 1;
 unavilableComBidScale = 2;
+bidSubmitLog = [];
 
 
 % Varible Setting
 global ALLBID APPCOMBIDLOG 
 ALLBID = struct;
 APPCOMBIDLOG = struct;
-
 ALLBID = bidGen(N,I);
 bidNum = length(ALLBID);
 % Calculate the bidder number of each stage
@@ -37,6 +37,7 @@ for s = 1:I
 end
 unavailableComBidCounter = 0;
 ifContinous = zeros(1,2);
+
 
 disp("ALLBID has done!")
 stageOneComBid()
@@ -74,4 +75,31 @@ while (1)
 end
 
 disp("PAUSE is finished!")
+
+% Bidder submit bids.
+APPlineNum = length(APPCOMBIDLOG);
+nonEmptyNum = ~cellfun(@isempty,struct2cell(APPCOMBIDLOG));
+for i = 1:length(APPCOMBIDLOG)
+    lengthCurrentLine = sum(nonEmptyNum(:,:,i)) - 1;
+    for k = 1:lengthCurrentLine
+        bidSubmitLog(i,APPCOMBIDLOG(i).("block"+k).agent) = ...
+            APPCOMBIDLOG(i).("block"+k).value;
+    end
+end
+
+figure('Name','Bids of each bidder')
+roundIndex = (1:APPlineNum);
+for i = 1:N
+    plot(roundIndex,bidSubmitLog(:,i),'LineWidth',1)
+    hold on
+end
+set(gca,'FontName','times new Roman');
+legend('Agent 1','Agent 2','Agent 3','Agent 4')
+xlabel('Round number','FontName','Times New Roman','FontSize',11)
+ylabel('Bid value','FontName','Times New Roman','FontSize',11)
+
+
+
+
+
     
