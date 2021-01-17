@@ -22,33 +22,54 @@ APPCOMBIDLOG = struct;
 
 ALLBID = bidGen(N,I);
 bidNum = length(ALLBID);
+% Calculate the bidder number of each stage
+stageBidderNum = [];
+stageMat = cell2mat({ALLBID.stage});
+for s = 1:I
+    stageBidderNum = [stageBidderNum sum(stageMat(:)==s)];    
+end
+unavailableComBidNum = 0;
+
 disp("ALLBID has done!")
 stageOneComBid()
 disp("stageOne has done!")
 
 for t = 2:I-1
-    for j = 1:bidNum
-        while(ALLBID(j).stage == t)
-            currentBlockBid = ALLBID(j);
-            comBid = comBidGen(currentBlockBid);
-            fprintf('This is agent %d, stage %d composit bid based on bid %d.\n',...
-                ALLBID(j).agent, ALLBID(j).stage, j)
-            if ~isempty(comBid)
-                if (APPCOMBIDLOG(i).value - comBid.value) < ALLBID(j).value
-                    comBid.("block"+1).value = APPCOMBIDLOG(i).value - comBid.value + e;
-                    comBid.value = APPCOMBIDLOG(i).value + e;
-                    APPCOMBIDLOG(i+1).value = comBid.value;
-                    for k = 1:(numel(fieldnames(comBid))-1)
-                        APPCOMBIDLOG(i+1).("block"+k) = comBid.("block"+k);
-                    end
-                    i = i+1;
+     while (unavailableComBidNum ~= stageBidderNum(1,t))
+        for j = 1:bidNum
+            while(ALLBID(j).stage == t)
+                currentBlockBid = ALLBID(j);
+                comBid = comBidGen(currentBlockBid,e);
+                fprintf('This is agent %d, stage %d composit bid based on bid %d.\n',...
+                    ALLBID(j).agent, ALLBID(j).stage, j)
+                if isempty(comBid)
+                    unavailableComBidNum = unavailableComBidNum + 1;  
+                    fprintf('The unavailable composite bid number is %d.\n', unavailableComBidNum)
+%                 else
+%                     if (APPCOMBIDLOG(i).value - comBid.value) < ALLBID(j).value
+%                         
+%                         comBid.("block"+1).value = APPCOMBIDLOG(i).value - comBid.value + e;
+%                         comBid.value = APPCOMBIDLOG(i).value + e;
+%                         APPCOMBIDLOG(i+1).value = comBid.value;
+%                         for k = 1:(numel(fieldnames(comBid))-1)
+%                             APPCOMBIDLOG(i+1).("block"+k) = comBid.("block"+k);
+%                         end
+%                         i = i+1;
+%                     else
+%                         unavailableComBidNum = unavailableComBidNum + 1;
+%                     end
                 end
+                j = j+1;
             end
             j = j+1;
-        end
-        j = j+1;
+        end     
+     end
+    unavailableComBidNum = 0;
+    if t == I
+        break;
     end
 end
+
 
 disp("PAUSE is finished!")
     
