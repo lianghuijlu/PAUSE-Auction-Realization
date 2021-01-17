@@ -33,7 +33,8 @@ stageMat = cell2mat({ALLBID.stage});
 for s = 1:I
     stageBidderNum = [stageBidderNum sum(stageMat(:)==s)];    
 end
-unavailableComBidNum = 0;
+unavailableComBidCounter = 0;
+ifContinous = zeros(1,2);
 
 disp("ALLBID has done!")
 stageOneComBid()
@@ -50,32 +51,24 @@ while (1)
         fprintf('This is agent %d, stage %d composit bid based on bid %d.\n',...
             ALLBID(j).agent, ALLBID(j).stage, j)
         if isempty(comBid)
-            unavailableComBidNum = unavailableComBidNum + 1;
+%             unavailableComBidNum = unavailableComBidNum + 1;
             fprintf('The unsubmit bid is bid %d.\n',j)
-            fprintf('The unavailable composite bid number is %d.\n', unavailableComBidNum)
-            
-            %                 else
-            %                     if (APPCOMBIDLOG(i).value - comBid.value) < ALLBID(j).value
-            %
-            %                         comBid.("block"+1).value = APPCOMBIDLOG(i).value - comBid.value + e;
-            %                         comBid.value = APPCOMBIDLOG(i).value + e;
-            %                         APPCOMBIDLOG(i+1).value = comBid.value;
-            %                         for k = 1:(numel(fieldnames(comBid))-1)
-            %                             APPCOMBIDLOG(i+1).("block"+k) = comBid.("block"+k);
-            %                         end
-            %                         i = i+1;
-            %                     else
-            %                         unavailableComBidNum = unavailableComBidNum + 1;
-            %                     end
+            ifContinous(2) = j;
+            if ifContinous(2)-ifContinous(1) == 1
+                unavailableComBidCounter = unavailableComBidCounter + 1;
+                ifContinous(2) = 0;
+                fprintf('The unavailable composite bid number is %d.\n', unavailableComBidCounter)
+            end
         end
+        ifContinous(1) = ifContinous(2);
     end
     j = j+1;
     if j == bidNum + 1
         j = 1;
     end
-    if unavailableComBidNum == stageBidderNum(1,t)
+    if unavailableComBidCounter > 2*stageBidderNum(1,t)
         t = t + 1;
-        unavailableComBidNum = 0;
+        unavailableComBidCounter = 0;
     end
     if t == I
         break;
