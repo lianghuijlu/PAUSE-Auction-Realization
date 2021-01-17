@@ -2,6 +2,8 @@
 This is the main function.
 Author: Hui Liang
 Date: 15 Jan, 2021
+
+Moified: 17 Jan, 2021
 %}
 clc
 clear
