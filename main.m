@@ -4,6 +4,7 @@ Author: Hui Liang
 Date: 15 Jan, 2021
 
 Moified: 17 Jan, 2021
+Moified V2: 5:00pm, 17 Jan, 2021
 %}
 clc
 clear
@@ -40,9 +41,6 @@ disp("ALLBID has done!")
 stageOneComBid()
 disp("stageOne has done!")
 
-% for t = 2:I-1
-    
-%     for j = 1:bidNum
 while (1)
     if (ALLBID(j).stage == t)
         fprintf('j = %d.\n',j)
@@ -51,7 +49,6 @@ while (1)
         fprintf('This is agent %d, stage %d composit bid based on bid %d.\n',...
             ALLBID(j).agent, ALLBID(j).stage, j)
         if isempty(comBid)
-%             unavailableComBidNum = unavailableComBidNum + 1;
             fprintf('The unsubmit bid is bid %d.\n',j)
             ifContinous(2) = j;
             if ifContinous(2)-ifContinous(1) == 1
@@ -74,11 +71,6 @@ while (1)
         break;
     end
 end
-%     end
-
-% end
-
-
 
 disp("PAUSE is finished!")
     
