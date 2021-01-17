@@ -19,6 +19,7 @@ i = 1;
 j = 1;
 t = 2;
 e = 1;
+unavilableComBidScale = 2;
 
 
 % Varible Setting
@@ -63,7 +64,7 @@ while (1)
     if j == bidNum + 1
         j = 1;
     end
-    if unavailableComBidCounter > 2*stageBidderNum(1,t)
+    if unavailableComBidCounter > unavilableComBidScale*stageBidderNum(1,t)
         t = t + 1;
         unavailableComBidCounter = 0;
     end
