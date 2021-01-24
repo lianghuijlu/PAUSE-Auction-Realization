@@ -90,11 +90,13 @@ end
 figure('Name','Bids of each bidder')
 roundIndex = (1:APPlineNum);
 for i = 1:N
-    plot(roundIndex,bidSubmitLog(:,i),'LineWidth',1)
+    %     plot(roundIndex,bidSubmitLog(:,i),'LineWidth',1)
+    stairs(roundIndex,bidSubmitLog(:,i),'LineWidth',1.5)
     hold on
 end
 set(gca,'FontName','times new Roman');
 legend('Agent 1','Agent 2','Agent 3','Agent 4')
+xlim([1,APPlineNum])
 xlabel('Round number','FontName','Times New Roman','FontSize',11)
 ylabel('Bid value','FontName','Times New Roman','FontSize',11)
 
