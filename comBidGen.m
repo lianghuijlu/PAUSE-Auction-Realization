@@ -10,7 +10,7 @@ function [comBidBack] = comBidGen(initialBlockBid, epsilon)
 % ALLBID = bid;
 % load('/Users/hui/OneDrive/1.MyProject/MyWork4/myPAUSE/Variables/oneStageComBid','APPCOMBIDLOG')
 
-global ALLBID APPCOMBIDLOG ITEMNUM 
+global APPCOMBIDLOG ITEMNUM 
 
 % itemNum = 4;
 % initialBlockBid = ALLBID(8);
