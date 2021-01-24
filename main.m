@@ -76,7 +76,7 @@ end
 
 disp("PAUSE is finished!")
 
-% Bidder submit bids.
+%% Figure 1: Bidder submit bids.
 APPlineNum = length(APPCOMBIDLOG);
 nonEmptyNum = ~cellfun(@isempty,struct2cell(APPCOMBIDLOG));
 for i = 1:length(APPCOMBIDLOG)
@@ -99,9 +99,13 @@ legend('Agent 1','Agent 2','Agent 3','Agent 4')
 xlim([1,APPlineNum])
 xlabel('Round number','FontName','Times New Roman','FontSize',11)
 ylabel('Bid value','FontName','Times New Roman','FontSize',11)
+%%
+
+%% Figure 2:
 
 
 
 
+%%
 
     

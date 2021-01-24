@@ -31,6 +31,7 @@ for i = 1:APPlineNum
     lengthCurrentLine = sum(nonEmptyNum(:,:,i)) - 1;
     for k = 1:lengthCurrentLine
         if i ~= ex_i && k ~= ex_k
+%             disp(['APPCOMBIDLOG line is ',num2str(i),' block is ',num2str(k)])
             if sum(ismember(blockBid.item,APPCOMBIDLOG(i).("block"+k).item)) == 0
                 comBid.("block"+j) = APPCOMBIDLOG(i).("block"+k);
                 blockBid.item = [blockBid.item APPCOMBIDLOG(i).("block"+k).item];
