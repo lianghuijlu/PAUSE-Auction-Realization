@@ -61,8 +61,9 @@ end
 if  isempty(comBidBackTemp)
     comBidBack = [];
 
-elseif (APPCOMBIDLOG(i).value - comBidBackTemp.value) < initialBlockBid.value
-    
+elseif (APPCOMBIDLOG(i).value - comBidBackTemp.value) < initialBlockBid.value ...
+        && (APPCOMBIDLOG(i).value + e) <= initialBlockBid.value
+        
     comBidBackTemp.("block"+1).value = APPCOMBIDLOG(i).value - comBidBackTemp.value + e;
     comBidBackTemp.value = APPCOMBIDLOG(i).value + e;
     APPCOMBIDLOG(i+1).value = comBidBackTemp.value;
