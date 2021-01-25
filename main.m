@@ -84,28 +84,28 @@ fprintf('LOOP NUM is %d.\n',LOOP)
 end
 
 %% Figure 1: Bidder submit bids.
-% APPlineNum = length(APPCOMBIDLOG);
-% nonEmptyNum = ~cellfun(@isempty,struct2cell(APPCOMBIDLOG));
-% for i = 1:length(APPCOMBIDLOG)
-%     lengthCurrentLine = sum(nonEmptyNum(:,:,i)) - 1;
-%     for k = 1:lengthCurrentLine
-%         bidSubmitLog(i,APPCOMBIDLOG(i).("block"+k).agent) = ...
-%             APPCOMBIDLOG(i).("block"+k).value;
-%     end
-% end
-% 
-% figure('Name','Bids of each bidder')
-% roundIndex = (1:APPlineNum);
-% for i = 1:N
-%     %     plot(roundIndex,bidSubmitLog(:,i),'LineWidth',1)
-%     stairs(roundIndex,bidSubmitLog(:,i),'LineWidth',1.5)
-%     hold on
-% end
-% set(gca,'FontName','times new Roman');
-% legend('Agent 1','Agent 2','Agent 3','Agent 4')
-% xlim([1,APPlineNum])
-% xlabel('Round number','FontName','Times New Roman','FontSize',11)
-% ylabel('Bid value','FontName','Times New Roman','FontSize',11)
+APPlineNum = length(APPCOMBIDLOG);
+nonEmptyNum = ~cellfun(@isempty,struct2cell(APPCOMBIDLOG));
+for i = 1:length(APPCOMBIDLOG)
+    lengthCurrentLine = sum(nonEmptyNum(:,:,i)) - 1;
+    for k = 1:lengthCurrentLine
+        bidSubmitLog(i,APPCOMBIDLOG(i).("block"+k).agent) = ...
+            APPCOMBIDLOG(i).("block"+k).value;
+    end
+end
+
+figure('Name','Bids of each bidder')
+roundIndex = (1:APPlineNum);
+for i = 1:N
+    %     plot(roundIndex,bidSubmitLog(:,i),'LineWidth',1.5)
+    stairs(roundIndex,bidSubmitLog(:,i),'LineWidth',1.5)
+    hold on
+end
+set(gca,'FontName','times new Roman');
+legend('Agent 1','Agent 2','Agent 3','Agent 4')
+xlim([1,APPlineNum])
+xlabel('Round number','FontName','Times New Roman','FontSize',11)
+ylabel('Bid value','FontName','Times New Roman','FontSize',11)
 %%
 
 %% Figure 2:

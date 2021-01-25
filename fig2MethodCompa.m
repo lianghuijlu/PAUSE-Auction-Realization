@@ -126,7 +126,19 @@ end
 % ylabel('Bid value','FontName','Times New Roman','FontSize',11)
 
 %% Figure 2: Methods comparsion
-
+PAUSEMean = mean(PAUSERecord,1);
+centralMean = mean(centralRecord,1);
+randomMean = mean(randomRecord,1);
+figure('Name','Social welfare comparsion')
+plot(itemRange,PAUSEMean,'LineWidth',1.5)
+hold on
+plot(itemRange,centralMean,'LineWidth',1.5)
+hold on
+plot(itemRange,randomMean,'LineWidth',1.5)
+hold on
+set(gca,'FontName','times new Roman');
+xlabel('Items','FontName','Times New Roman','FontSize',11)
+ylabel('Social welfare','FontName','Times New Roman','FontSize',11)
 %%
 
 
