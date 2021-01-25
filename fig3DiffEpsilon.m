@@ -167,15 +167,16 @@ for i = 1:length(epsilonRange)
 end
 
 figure('Name','Different Epsilon comparsion')
+plot(itemRange,centralMean,'LineWidth',1.5)
+hold on
 for i = 1:length(epsilonRange)
     plot(itemRange,epsilonDisp(i,:),'LineWidth',1.5)
     hold on
 end
-plot(itemRange,centralMean,'LineWidth',1.5)
-hold on
+
 
 grid on
-legend('Epsilon=1','Epsilon=5','Epsilon=15','Epsilon=25','Central')
+legend('Central','Epsilon=1','Epsilon=5','Epsilon=15','Epsilon=25')
 set(gca,'FontName','times new Roman');
 xlabel('Items','FontName','Times New Roman','FontSize',11)
 ylabel('Social welfare','FontName','Times New Roman','FontSize',11)
