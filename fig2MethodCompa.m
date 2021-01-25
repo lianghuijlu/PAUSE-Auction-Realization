@@ -136,6 +136,7 @@ plot(itemRange,centralMean,'LineWidth',1.5)
 hold on
 plot(itemRange,randomMean,'LineWidth',1.5)
 hold on
+grid on
 legend('PAUSE','Central','Random')
 set(gca,'FontName','times new Roman');
 xlabel('Items','FontName','Times New Roman','FontSize',11)
