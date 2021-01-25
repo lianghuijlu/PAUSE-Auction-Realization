@@ -10,8 +10,8 @@ Moified V2: 5:00pm, 17 Jan, 2021
 clc
 clear
 
-LOOPNUM = 100;
-itemNumBegin = 4;
+LOOPNUM = 1;
+itemNumBegin = 12;
 itemNumEnd = 12;
 itemRange = [itemNumBegin:itemNumEnd];
 for LOOP = 1:LOOPNUM
@@ -136,6 +136,7 @@ plot(itemRange,centralMean,'LineWidth',1.5)
 hold on
 plot(itemRange,randomMean,'LineWidth',1.5)
 hold on
+legend('PAUSE','Central','Random')
 set(gca,'FontName','times new Roman');
 xlabel('Items','FontName','Times New Roman','FontSize',11)
 ylabel('Social welfare','FontName','Times New Roman','FontSize',11)

@@ -3,14 +3,15 @@ function [centralValue] = centralSolution()
 %   Detailed explanation goes here
 
 
-global ALLBID ITEMNUM N
+global ALLBID ITEMNUM
 
 % ITEMNUM = 4;
 % N = 4;
+
 bid = ALLBID;
 constraintMat = [];
-SelNum = length(find(cell2mat({bid.stage})<=N-1));
-constraintMat = zeros(SelNum,N);
+SelNum = length(find(cell2mat({bid.stage})<=ITEMNUM-1));
+constraintMat = zeros(SelNum,ITEMNUM);
 Bid = bid(1:SelNum);
 Value = cell2mat({Bid.value});
 maxNumforEachItem = ones(1,ITEMNUM);
@@ -34,6 +35,7 @@ ub = upperBound;
 [x, fval] = intlinprog(f,intcon,A,b,[],[],lb,ub);
 
 centralValue = -fval;
+% find(x ~= 0)
 % winBid = find(x==1);
 % disp(['Winner bids are:',mat2str(winBid)])
 % disp(['Total value is:',mat2str(-fval)])
