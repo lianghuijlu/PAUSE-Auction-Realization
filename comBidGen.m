@@ -58,19 +58,21 @@ for i = 1:APPlineNum
     end
 end
 
+currentLine = APPlineNum;
+
 if  isempty(comBidBackTemp)
     comBidBack = [];
 
-elseif (APPCOMBIDLOG(i).value - comBidBackTemp.value) < initialBlockBid.value ...
-        && (APPCOMBIDLOG(i).value + e) <= initialBlockBid.value
+elseif (APPCOMBIDLOG(currentLine).value - comBidBackTemp.value) < initialBlockBid.value ...
+        && (APPCOMBIDLOG(currentLine).value + e) <= initialBlockBid.value
         
-    comBidBackTemp.("block"+1).value = APPCOMBIDLOG(i).value - comBidBackTemp.value + e;
-    comBidBackTemp.value = APPCOMBIDLOG(i).value + e;
-    APPCOMBIDLOG(i+1).value = comBidBackTemp.value;
+    comBidBackTemp.("block"+1).value = APPCOMBIDLOG(currentLine).value - comBidBackTemp.value + e;
+    comBidBackTemp.value = APPCOMBIDLOG(currentLine).value + e;
+    APPCOMBIDLOG(currentLine+1).value = comBidBackTemp.value;
     for k = 1:(numel(fieldnames(comBid))-1)
-        APPCOMBIDLOG(i+1).("block"+k) = comBidBackTemp.("block"+k);
+        APPCOMBIDLOG(currentLine+1).("block"+k) = comBidBackTemp.("block"+k);
     end
-    i = i+1;
+%     i = i+1;
     comBidBack = comBidBackTemp;
 else
     comBidBack = [];
