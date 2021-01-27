@@ -9,7 +9,7 @@ Date: 26 Jan, 2021
 clc
 clear
 
-LOOPNUM = 20;
+LOOPNUM = 10;
 
 itemNumBegin = 6;
 itemNumEnd = 6;
