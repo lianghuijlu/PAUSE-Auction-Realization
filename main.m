@@ -95,14 +95,28 @@ for i = 1:length(APPCOMBIDLOG)
 end
 
 figure('Name','Bids of each bidder')
+% roundIndex = (1:APPlineNum);
+% for i = 1:N
+%     %     plot(roundIndex,bidSubmitLog(:,i),'LineWidth',1.5)
+% %     stairs(roundIndex,bidSubmitLog(:,i),'LineWidth',2)
+%     bar(roundIndex,bidSubmitLog(:,i),'LineWidth',2)
+%     hold on
+% end
+
+% bidSubmit = bidSubmitLog';
+
+APPlineNum = 10;
+
 roundIndex = (1:APPlineNum);
-for i = 1:N
-    %     plot(roundIndex,bidSubmitLog(:,i),'LineWidth',1.5)
-    stairs(roundIndex,bidSubmitLog(:,i),'LineWidth',2)
-    hold on
-end
+
+
+
+bar(roundIndex,bidSubmitLog(1:10,1:3),'LineWidth',2)
+
+
 set(gca,'FontName','times new Roman');
-leg = legend('$CT_1$','$CT_2$','$CT_3$','$CT_4$');
+% leg = legend('$CT_1$','$CT_2$','$CT_3$','$CT_4$');
+leg = legend('$CT_1$','$CT_2$','$CT_3$');
 set(leg,'Interpreter','latex')
 set(leg,'FontSize',14)
 xlim([1,APPlineNum])
