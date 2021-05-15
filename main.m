@@ -25,7 +25,8 @@ t = 2;
 e = 1;
 unavilableComBidScale = 2;
 bidSubmitLog = [];
-
+load('/Users/hui/OneDrive/1.MyProject/MyWork4-PAUSE/Revision/Round1/FigF.BidStair/BidInfo','Bidsubmit')
+Bidsubmit = Bidsubmit;
 
 % Varible Setting
 global ALLBID APPCOMBIDLOG 
