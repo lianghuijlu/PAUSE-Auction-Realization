@@ -17,6 +17,7 @@ global APPCOMBIDLOG ITEMNUM
 itemNum = ITEMNUM;
 e = epsilon;
 blockBid = initialBlockBid;
+comBid = [];
 comBid.("block"+1) = blockBid;
 currentComBidValue = 0;
 preComBidValue = 0;
@@ -38,13 +39,16 @@ for i = 1:APPlineNum
                 comBid.value = currentComBidValue + APPCOMBIDLOG(i).("block"+k).value;
                 currentComBidValue = comBid.value;
                 j = j + 1;
-                if length(blockBid.item) == itemNum
-                    if comBid.value > preComBidValue
+%                 fprintf('blockBid items are %d.\n',blockBid.item) 
+                if length(blockBid.item) == itemNum                    
+                    if  comBid.value > preComBidValue
                         comBidBackTemp = comBid;
                         preComBidValue = currentComBidValue;
                         currentComBidValue = 0;
-                        blockBid = initialBlockBid;
+                        blockBid = initialBlockBid;                        
                         j = 2;
+                        comBid = [];
+                        comBid.("block"+1) = blockBid;
                     end
                     ex_i = i;
                     ex_k = k;
@@ -58,6 +62,8 @@ for i = 1:APPlineNum
     end
 end
 
+
+
 currentLine = APPlineNum;
 
 if  isempty(comBidBackTemp)
@@ -69,11 +75,12 @@ elseif (APPCOMBIDLOG(currentLine).value - comBidBackTemp.value) < initialBlockBi
     comBidBackTemp.("block"+1).value = APPCOMBIDLOG(currentLine).value - comBidBackTemp.value + e;
     comBidBackTemp.value = APPCOMBIDLOG(currentLine).value + e;
     APPCOMBIDLOG(currentLine+1).value = comBidBackTemp.value;
-    for k = 1:(numel(fieldnames(comBid))-1)
+    for k = 1:(numel(fieldnames(comBidBackTemp))-1)
         APPCOMBIDLOG(currentLine+1).("block"+k) = comBidBackTemp.("block"+k);
     end
 %     i = i+1;
     comBidBack = comBidBackTemp;
+    comBidBackTemp = [];
 else
     comBidBack = [];
 end
