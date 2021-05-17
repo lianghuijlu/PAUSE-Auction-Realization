@@ -11,7 +11,7 @@ clc
 clear
 
 LOOPNUM = 1;
-itemNumBegin = 12;
+itemNumBegin = 6;
 itemNumEnd = 12;
 itemRange = [itemNumBegin:itemNumEnd];
 for LOOP = 1:LOOPNUM
