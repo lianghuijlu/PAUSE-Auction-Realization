@@ -94,6 +94,15 @@ for LOOP = 1:LOOPNUM
         randomValue = randomSolution();
         randomRecord(LOOP,itemOrder) = randomValue;
         disp('Random has done!')
+        
+        knapsackValue = knapsackSolution();
+        knapsackRecord(LOOP,itemOrder) = knapsackValue;
+        disp('Knapsack has done!')
+        
+        multiflowValue = centralSolution();
+        centralRecord(LOOP,itemOrder) = multiflowValue;
+        disp('MCFP has done!')
+        
     end
     
     fprintf('LOOP NUM is %d.\n',LOOP)
@@ -143,6 +152,31 @@ xlabel('Items','FontName','Times New Roman','FontSize',11)
 ylabel('Social welfare','FontName','Times New Roman','FontSize',11)
 %%
 
+% Only for figure drawing, run should under Windows system. 
+% Figure 2: Methods compasion + Knapsack
+PAUSEMean = mean(PAUSERecord,1);
+centralMean = mean(centralRecord,1);
+randomMean = mean(randomRecord,1);
+knapsackMean = mean(knapsackRecord,1);
+mcfpMean = mean(mcfpRecord,1);
+figure('Name','Social welfare comparsion')
+plot(itemRange,PAUSEMean,'-*r','LineWidth',1.5)
+hold on
+plot(itemRange,centralMean,'-sb','LineWidth',1.5)
+hold on
+plot(itemRange,mcfpMean,'-^y','LineWidth',1.5)
+hold on
+plot(itemRange,knapsackMean,'-pc','LineWidth',1.5)
+hold on
+plot(itemRange,randomMean,'-^g','LineWidth',1.5)
+hold on
+grid on
+legend('PAUSE','Central','MCFP in [17]','Distributed FPTAS in [20]','Random')
+set(gca,'FontName','times new Roman');
+xlabel('Items','FontName','Times New Roman','FontSize',11)
+ylabel('Social welfare','FontName','Times New Roman','FontSize',11)
+
+%%
 
 
 
